@@ -1,5 +1,6 @@
 {
 	"$schema": "../node_modules/@companion-module/base/assets/manifest.schema.json",
+	"type": "connection",
 	"id": "ezcast-pro-dt214m-am8270-kvm",
 	"name": "companion-module-EZCAST-PRO-DT214M-AM8270-KVM",
 	"shortname": "EZCast KVM",
