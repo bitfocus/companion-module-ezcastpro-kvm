@@ -1,0 +1,54 @@
+{
+	"$schema": "../node_modules/@companion-module/base/assets/manifest.schema.json",
+	"id": "ezcast-pro-dt214m-am8270-kvm",
+	"name": "companion-module-EZCAST-PRO-DT214M-AM8270-KVM",
+	"shortname": "EZCast KVM",
+	"description": "Control EZCast Pro / Actions Micro AM8270 / PWAY DT214M POE IP KVM receivers over the CMS JSON-RPC API",
+	"version": "0.1.0",
+	"license": "MIT",
+	"repository": "git+https://github.com/themusicnerd/companion-module-EZCAST-PRO-DT214M-AM8270-KVM.git",
+	"bugs": "https://github.com/themusicnerd/companion-module-EZCAST-PRO-DT214M-AM8270-KVM/issues",
+	"maintainers": [
+		{
+			"name": "Adrian Davis",
+			"email": "themusicnerd@gmail.com"
+		}
+	],
+	"runtime": {
+		"type": "node22",
+		"api": "nodejs-ipc",
+		"apiVersion": "0.0.0",
+		"entrypoint": "../dist/main.js"
+	},
+	"legacyIds": [],
+	"manufacturer": "EZCast Pro / Actions Micro / PWAY / PWAYTek",
+	"products": [
+		"DT214M",
+		"DT214M-IR-200M-KVM-POE",
+		"DT241M-IR-200M-KVM-POE",
+		"AM8270",
+		"ET01",
+		"ER02",
+		"ProAVTx ET01",
+		"ProAVRx ER01"
+	],
+	"keywords": [
+		"iKVM",
+		"CMS",
+		"PROAV",
+		"PWAY",
+		"ALIEXPRESS",
+		"DT214M",
+		"150m hdmi poe kvm extender over ip many-to-many",
+		"HDMI over IP",
+		"many-to-many",
+		"POE",
+		"AM8270",
+		"EZCast",
+		"EZCast Pro",
+		"kvm",
+		"matrix",
+		"pwaytek",
+		"actions micro"
+	]
+}

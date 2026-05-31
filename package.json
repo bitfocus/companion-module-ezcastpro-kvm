@@ -1,0 +1,34 @@
+{
+	"name": "companion-module-ezcast-pro-dt214m-am8270-kvm",
+	"version": "0.1.0",
+	"main": "dist/main.js",
+	"type": "module",
+	"scripts": {
+		"build": "rimraf dist && tsc -p tsconfig.build.json",
+		"dev": "tsc -p tsconfig.build.json --watch",
+		"package": "npm run build && companion-module-build",
+		"lint": "eslint .",
+		"format": "prettier -w ."
+	},
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/themusicnerd/companion-module-EZCAST-PRO-DT214M-AM8270-KVM.git"
+	},
+	"engines": {
+		"node": "^22.20"
+	},
+	"dependencies": {
+		"@companion-module/base": "~1.14.1"
+	},
+	"devDependencies": {
+		"@companion-module/tools": "^2.6.1",
+		"@types/node": "^22.19.3",
+		"eslint": "^9.39.2",
+		"prettier": "^3.7.4",
+		"rimraf": "^6.1.2",
+		"typescript": "~5.9.3",
+		"typescript-eslint": "^8.51.0"
+	},
+	"prettier": "@companion-module/tools/.prettierrc.json"
+}
