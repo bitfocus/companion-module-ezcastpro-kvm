@@ -88,7 +88,7 @@ export async function cmsCall<T = unknown>(
 				headers: {
 					'Content-Type': `multipart/form-data; boundary=${boundary}`,
 					'Content-Length': body.length,
-					'User-Agent': 'companion-module-ezcastpro-kvm/0.1.1',
+					'User-Agent': 'companion-module-ezcastpro-kvm/0.1.2',
 				},
 			},
 			(res) => {

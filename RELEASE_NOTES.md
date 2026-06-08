@@ -1,4 +1,4 @@
-# v0.1.1
+# v0.1.2
 
 Initial Companion module for EZCastPro / EZCast Pro POE IP KVM extenders, including Actions Micro AM8270 and PWAY/PWAYTek ProAV POE IP KVM rebrands.
 
@@ -16,7 +16,7 @@ Initial Companion module for EZCastPro / EZCast Pro POE IP KVM extenders, includ
 
 ## Package
 
-Attach `ezcastpro-kvm-0.1.1.tgz` to this release.
+Attach `ezcastpro-kvm-0.1.2.tgz` to this release.
 
 ## Discovery Notes
 

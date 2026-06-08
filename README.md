@@ -49,4 +49,4 @@ yarn lint
 yarn package
 ```
 
-The package command writes `ezcastpro-kvm-0.1.1.tgz`.
+The package command writes `ezcastpro-kvm-0.1.2.tgz`.

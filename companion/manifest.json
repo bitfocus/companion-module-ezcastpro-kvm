@@ -5,7 +5,7 @@
 	"name": "ezcastpro-kvm",
 	"shortname": "EZCastPro KVM",
 	"description": "Control EZCastPro / EZCast Pro POE IP KVM receivers over the CMS JSON-RPC API",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"license": "MIT",
 	"repository": "git+https://github.com/bitfocus/companion-module-ezcastpro-kvm.git",
 	"bugs": "https://github.com/bitfocus/companion-module-ezcastpro-kvm/issues",
