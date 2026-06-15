@@ -4,7 +4,6 @@ export interface ModuleConfig {
 	rxSelectionMode: 'manual' | 'discovered'
 	manualRxHost: string
 	discoveredRxHost: string
-	rxHost: string
 	password: string
 	pollIntervalMs: number
 	requestTimeoutMs: number
