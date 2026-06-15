@@ -43,8 +43,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (action) => {
-				const resolved = await self.parseVariablesInString(String(action.options.channel ?? ''))
-				await self.setChannel(parseChannel(resolved))
+				await self.setChannel(parseChannel(String(action.options.channel ?? '')))
 			},
 		},
 		refresh_status: {
@@ -73,8 +72,7 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (action) => {
-				const name = await self.parseVariablesInString(String(action.options.name ?? ''))
-				await self.setName(self.getEffectiveRxHost(), name)
+				await self.setName(self.getEffectiveRxHost(), String(action.options.name ?? ''))
 			},
 		},
 		set_device_name: {
@@ -104,10 +102,9 @@ export function UpdateActions(self: ModuleInstance): void {
 				},
 			],
 			callback: async (action) => {
-				const customHost = (await self.parseVariablesInString(String(action.options.customHost ?? ''))).trim()
+				const customHost = String(action.options.customHost ?? '').trim()
 				const host = customHost || String(action.options.host ?? defaultDevice)
-				const name = await self.parseVariablesInString(String(action.options.name ?? ''))
-				await self.setName(host, name)
+				await self.setName(host, String(action.options.name ?? ''))
 			},
 		},
 		set_tx_channel_id: {
@@ -147,9 +144,9 @@ export function UpdateActions(self: ModuleInstance): void {
 				if (action.options.confirm !== true) {
 					throw new Error('Enable the confirmation checkbox before changing a TX device ID')
 				}
-				const customHost = (await self.parseVariablesInString(String(action.options.customHost ?? ''))).trim()
+				const customHost = String(action.options.customHost ?? '').trim()
 				const host = customHost || String(action.options.host ?? defaultTx)
-				const channel = parseChannel(await self.parseVariablesInString(String(action.options.channel ?? '')))
+				const channel = parseChannel(String(action.options.channel ?? ''))
 				await self.setRemoteDeviceChannel(host, channel)
 			},
 		},

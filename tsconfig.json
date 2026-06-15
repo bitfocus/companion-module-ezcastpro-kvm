@@ -1,8 +1,8 @@
 {
-	"extends": "@companion-module/tools/tsconfig/node22/recommended-esm",
+	"extends": "./tsconfig.build.json",
 	"include": ["src/**/*.ts"],
+	"exclude": ["node_modules/**"],
 	"compilerOptions": {
-		"rootDir": "src",
-		"outDir": "dist"
+		"types": ["node" /* , "jest" ] // uncomment this if using jest */]
 	}
 }

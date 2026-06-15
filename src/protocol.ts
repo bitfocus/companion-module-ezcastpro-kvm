@@ -50,6 +50,8 @@ export interface DeviceDescription {
 	conferenceControlIp?: string
 }
 
+const MAX_CMS_RESPONSE_BYTES = 256 * 1024
+
 function multipartBody(fields: Record<string, string>): { boundary: string; body: Buffer } {
 	const boundary = `----poekvm-${crypto.randomUUID().replace(/-/g, '')}`
 	const chunks: Buffer[] = []
@@ -78,6 +80,13 @@ export async function cmsCall<T = unknown>(
 	const { boundary, body } = multipartBody({ data: payload })
 
 	return new Promise((resolve, reject) => {
+		let settled = false
+		const fail = (error: Error): void => {
+			if (settled) return
+			settled = true
+			reject(error)
+		}
+
 		const req = http.request(
 			{
 				host,
@@ -93,24 +102,41 @@ export async function cmsCall<T = unknown>(
 			},
 			(res) => {
 				const chunks: Buffer[] = []
-				res.on('data', (chunk: Buffer) => chunks.push(chunk))
+				let length = 0
+				res.on('data', (chunk: Buffer) => {
+					length += chunk.length
+					if (length > MAX_CMS_RESPONSE_BYTES) {
+						fail(new Error(`CMS response from ${host} exceeded ${MAX_CMS_RESPONSE_BYTES} bytes`))
+						req.destroy()
+						return
+					}
+					chunks.push(chunk)
+				})
 				res.on('end', () => {
+					if (settled) return
 					const text = Buffer.concat(chunks).toString('utf8')
+					const statusCode = res.statusCode ?? 0
+					if (statusCode < 200 || statusCode >= 300) {
+						fail(new Error(`CMS request to ${host} failed with HTTP ${statusCode}: ${text.slice(0, 120)}`))
+						return
+					}
+
 					try {
 						const parsed = JSON.parse(text) as CmsResponse<T>
 						if (parsed.error) {
-							reject(new Error(parsed.error.message || `CMS error ${parsed.error.code ?? ''}`.trim()))
+							fail(new Error(parsed.error.message || `CMS error ${parsed.error.code ?? ''}`.trim()))
 						} else {
+							settled = true
 							resolve(parsed)
 						}
 					} catch (error) {
-						reject(new Error(`Invalid CMS response from ${host}: ${String(error)}: ${text.slice(0, 120)}`))
+						fail(new Error(`Invalid CMS response from ${host}: ${String(error)}: ${text.slice(0, 120)}`))
 					}
 				})
 			},
 		)
 		req.on('timeout', () => req.destroy(new Error(`Request timed out after ${timeoutMs} ms`)))
-		req.on('error', reject)
+		req.on('error', (error) => fail(error))
 		req.end(body)
 	})
 }
